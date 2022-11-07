@@ -13,10 +13,8 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
     boxShadow: 24,
-    p: 4,
+    
 };
 
 export default function MUIErrorModal() {
@@ -26,10 +24,6 @@ export default function MUIErrorModal() {
         auth.modalConfirm();
     }
     
-    let modalClass = "modal";
-    if (auth.isModal()) {
-        modalClass += " is-visible";
-    }
     
 
     return (
@@ -39,9 +33,10 @@ export default function MUIErrorModal() {
             <Box sx={style}>
                 <div className="modal-dialog">
                 <Alert severity='error'>
-                    <AlertTitle>Error</AlertTitle>
+                    <AlertTitle>Error: Invalid Input</AlertTitle>
                     <Button
                         onClick={closedal}
+                        variant={"outlined"}
                     >
                     Confirm
                     </Button>

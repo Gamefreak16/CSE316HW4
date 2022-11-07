@@ -154,7 +154,6 @@ function AuthContextProvider(props) {
     }
 
     auth.isModal = () => {
-        console.log(auth.modalUp === true)
         return auth.modalUp === true;
     }
 

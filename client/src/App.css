@@ -327,7 +327,7 @@ input {
   grid-template-columns: 30% 65%;
   grid-template-rows: 33% 33% 33%;
   gap: 10px 20px;
-  font-size: 20pt;
+  font-size: 25pt;
 }
 
 .modal-center-content {
@@ -372,6 +372,10 @@ input {
 
 #confirm-cancel-container {
   text-align: center;
+}
+
+.modal-button{
+  font-size: 20pt;
 }
 
 /* ANIMATIONS

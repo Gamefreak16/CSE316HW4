@@ -18,7 +18,7 @@ function AuthContextProvider(props) {
     const [auth, setAuth] = useState({
         user: null,
         loggedIn: false,
-        modalUp: false
+        error: null
     });
     const history = useHistory();
 
@@ -33,35 +33,35 @@ function AuthContextProvider(props) {
                 return setAuth({
                     user: payload.user,
                     loggedIn: payload.loggedIn,
-                    modalUp: false
+                    error: null
                 });
             }
             case AuthActionType.LOGIN_USER: {
                 return setAuth({
                     user: payload.user,
                     loggedIn: true,
-                    modalUp: false
+                    error: null
                 })
             }
             case AuthActionType.LOGOUT_USER: {
                 return setAuth({
                     user: null,
                     loggedIn: false,
-                    modalUp: false
+                    error: null
                 })
             }
             case AuthActionType.REGISTER_USER: {
                 return setAuth({
                     user: payload.user,
                     loggedIn: true,
-                    modalUp: false
+                    error: null
                 })
             }
             case AuthActionType.ERROR: {
                 return setAuth({
                     user: null,
                     loggedIn: false,
-                    modalUp: true
+                    error: payload
                 })
             }
             default:
@@ -95,10 +95,11 @@ function AuthContextProvider(props) {
                 history.push("/"); // was /login
             }
         }
-        catch{
-            console.log("here")
+        catch(err){
+            console.log(err.response.data.errorMessage)
             authReducer({
-                type: AuthActionType.ERROR
+                type: AuthActionType.ERROR,
+                payload: err.response.data.errorMessage
             })
             console.log(auth.modalUp);
         }
@@ -118,9 +119,10 @@ function AuthContextProvider(props) {
                 history.push("/");
             }
         }
-        catch{
+        catch(err){
             authReducer({
-                type: AuthActionType.ERROR
+                type: AuthActionType.ERROR,
+                payload: err.response.data.errorMessage
             })
         }
     }
@@ -154,7 +156,7 @@ function AuthContextProvider(props) {
     }
 
     auth.isModal = () => {
-        return auth.modalUp === true;
+        return auth.error !== null;
     }
 
     return (

@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useCallback } from 'react'
 import { useHistory } from 'react-router-dom'
 import SongCard from './SongCard.js'
 import MUIEditSongModal from './MUIEditSongModal'
@@ -15,6 +15,25 @@ import { GlobalStoreContext } from '../store/index.js'
 function WorkspaceScreen() {
     const { store } = useContext(GlobalStoreContext);
     store.history = useHistory();
+
+    const handleKeyPress = useCallback((event) => {
+        if(event.key === 'z' && event.ctrlKey && store.currentSongIndex === -1){
+            store.undo();
+        }
+        if(event.key === 'y' && event.ctrlKey && store.currentSongIndex === -1){
+            store.redo();
+        }
+      }, []);
+    
+      useEffect(() => {
+        // attach the event listener
+        document.addEventListener('keydown', handleKeyPress);
+    
+        // remove the event listener
+        return () => {
+          document.removeEventListener('keydown', handleKeyPress);
+        };
+      }, [handleKeyPress]);
     
     let modalJSX = "";
     if (store.isEditSongModalOpen()) {
@@ -23,7 +42,14 @@ function WorkspaceScreen() {
     else if (store.isRemoveSongModalOpen()) {
         modalJSX = <MUIRemoveSongModal />;
     }
+    useEffect(()=>{
+        if(store.currentList === null){
+            store.history.push('/')
+        }
+    }, [store.currentList])
+    if(store.currentList !== null){
     return (
+       
         <Box>
         <List 
             id="playlist-cards" 
@@ -43,6 +69,8 @@ function WorkspaceScreen() {
          { modalJSX }
          </Box>
     )
+    }
+    else{return null}
 }
 
 export default WorkspaceScreen;

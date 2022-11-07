@@ -32,8 +32,17 @@ export default function MUIErrorModal() {
         >
             <Box sx={style}>
                 <div className="modal-dialog">
-                <Alert severity='error'>
-                    <AlertTitle>Error: Invalid Input</AlertTitle>
+
+                <Alert severity='error'
+                    sx={{
+                        margin: 'auto',
+                        fontSize: '14pt',
+                      }}
+                >
+                
+                    <AlertTitle>Error:</AlertTitle>
+                    {auth.error + "\n"}
+                    <br></br>
                     <Button
                         onClick={closedal}
                         variant={"outlined"}

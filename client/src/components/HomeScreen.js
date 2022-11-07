@@ -25,7 +25,7 @@ const HomeScreen = () => {
     let listCard = "";
     if (store) {
         listCard = 
-            <List sx={{ width: '90%', left: '5%', bgcolor: 'background.paper' }}>
+            <List sx={{ width: '90%', left: '5%', }}>
             {
                 store.idNamePairs.map((pair) => (
                     <ListCard
@@ -38,8 +38,9 @@ const HomeScreen = () => {
             </List>;
     }
     return (
-        <div id="playlist-selector">
-            <div id="list-selector-heading">
+        <div id="playlist-selector" >
+            <div id="list-selector-heading"
+            style={{backgroundColor:'#95c4e453'}}>
             <Fab 
                 color="primary" 
                 aria-label="add"
@@ -50,7 +51,9 @@ const HomeScreen = () => {
             </Fab>
                 <Typography variant="h2">Your Lists</Typography>
             </div>
-            <div id="list-selector-list">
+            <div id="list-selector-list"
+            style={{backgroundColor:'#95c4e453'}}
+            >
                 {
                     listCard
                 }

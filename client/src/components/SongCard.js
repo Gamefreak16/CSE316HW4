@@ -71,7 +71,7 @@ function SongCard(props) {
                 color="primary" 
                 aria-label="delete"
                 id={"remove-song-" + index}
-                // className="list-card-button"
+                //className="list-card-button"
                 onClick={handleRemoveSong}
                 style={{float:"right", }}
             >

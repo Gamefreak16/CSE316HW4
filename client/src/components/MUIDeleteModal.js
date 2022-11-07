@@ -26,17 +26,17 @@ export default function MUIDeleteModal() {
         store.deleteMarkedList();
     }
     function handleCloseModal(event) {
-        store.unmarkListForDeletion();
+        store.hideModals();
     }
 
     return (
         <Modal
-            open={store.listMarkedForDeletion !== null}
+            open={store.isDeleteListModalOpen()}
         >
             <Box sx={style}>
                 <div className="modal-dialog">
                 <header className="dialog-header">
-                    Delete the {name} Top 5 List?
+                    Delete the {name} List?
                 </header>
                 <div id="confirm-cancel-container">
                     <button

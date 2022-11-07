@@ -10,10 +10,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
+    p: 8,
 };
 
 export default function MUIRemoveSongModal() {
@@ -45,8 +42,8 @@ export default function MUIRemoveSongModal() {
         id="remove-song-modal"
         className={modalClass}
         data-animation="slideInOutLeft">
-        <div className="modal-root" id='verify-remove-song-root'>
-            <div className="modal-north">
+        <div className="modal-dialog" id='verify-remove-song-root'>
+            <div className="modal-header">
                 Remove {songTitle}?
             </div>
             <div className="modal-center">
@@ -54,7 +51,7 @@ export default function MUIRemoveSongModal() {
                     Are you sure you wish to permanently remove {songTitle} from the playlist?
                 </div>
             </div>
-            <div className="modal-south">
+            <div className="modal-footer">
                 <input type="button" 
                     id="remove-song-confirm-button" 
                     className="modal-button" 

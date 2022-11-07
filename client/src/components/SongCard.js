@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { GlobalStoreContext } from '../store'
 import Fab from '@mui/material/Fab'
 import DeleteIcon from '@mui/icons-material/Delete';
+import { fontSize } from '@mui/system';
 
 
 function SongCard(props) {
@@ -71,11 +72,11 @@ function SongCard(props) {
                 color="primary" 
                 aria-label="delete"
                 id={"remove-song-" + index}
-                //className="list-card-button"
+                // className="list-card-button"
                 onClick={handleRemoveSong}
-                style={{float:"right", }}
+                style={{float:"right",fontSize:'30pt', height:50, width:50, bottom:10}}
             >
-                <DeleteIcon style={{fontSize:'32pt'}} />
+                {"\u2715"}
             </Fab>
         </div>
     );

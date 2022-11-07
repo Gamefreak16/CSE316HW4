@@ -103,7 +103,13 @@ export default function AppBanner() {
                         sx={{ display: { xs: 'none', sm: 'block' }, padding:'15px 0'}}                        
                     >
                     <Box sx={{ display: { xs: 'none', md: 'flex' } , zIndex:1 }}>
-                        <Link style={{ textDecoration: 'none', color: 'white' }} to='/'>⌂</Link>
+                        <Link style={{ textDecoration: 'none', color: 'white' }} 
+                        onClick={() => {
+                            store.closeCurrentList()
+                        }}
+                        to='/'>⌂
+                        </Link>
+                        
                     </Box>  
                     </Typography>
                     <Box sx={{ flexGrow: 1 }}>{editToolbar}</Box>

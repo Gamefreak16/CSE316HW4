@@ -10,13 +10,15 @@ export const AuthActionType = {
     GET_LOGGED_IN: "GET_LOGGED_IN",
     LOGIN_USER: "LOGIN_USER",
     LOGOUT_USER: "LOGOUT_USER",
-    REGISTER_USER: "REGISTER_USER"
+    REGISTER_USER: "REGISTER_USER",
+    ERROR: "ERROR",
 }
 
 function AuthContextProvider(props) {
     const [auth, setAuth] = useState({
         user: null,
-        loggedIn: false
+        loggedIn: false,
+        modalUp: false
     });
     const history = useHistory();
 
@@ -30,25 +32,36 @@ function AuthContextProvider(props) {
             case AuthActionType.GET_LOGGED_IN: {
                 return setAuth({
                     user: payload.user,
-                    loggedIn: payload.loggedIn
+                    loggedIn: payload.loggedIn,
+                    modalUp: false
                 });
             }
             case AuthActionType.LOGIN_USER: {
                 return setAuth({
                     user: payload.user,
-                    loggedIn: true
+                    loggedIn: true,
+                    modalUp: false
                 })
             }
             case AuthActionType.LOGOUT_USER: {
                 return setAuth({
                     user: null,
-                    loggedIn: false
+                    loggedIn: false,
+                    modalUp: false
                 })
             }
             case AuthActionType.REGISTER_USER: {
                 return setAuth({
                     user: payload.user,
-                    loggedIn: true
+                    loggedIn: true,
+                    modalUp: false
+                })
+            }
+            case AuthActionType.ERROR: {
+                return setAuth({
+                    user: null,
+                    loggedIn: false,
+                    modalUp: true
                 })
             }
             default:
@@ -83,7 +96,11 @@ function AuthContextProvider(props) {
             }
         }
         catch{
-            console.log("dumb shit")//Make this do modal
+            console.log("here")
+            authReducer({
+                type: AuthActionType.ERROR
+            })
+            console.log(auth.modalUp);
         }
         
     }
@@ -102,7 +119,9 @@ function AuthContextProvider(props) {
             }
         }
         catch{
-            console.log("they fucked up")
+            authReducer({
+                type: AuthActionType.ERROR
+            })
         }
     }
 
@@ -125,6 +144,18 @@ function AuthContextProvider(props) {
         }
         console.log("user initials: " + initials);
         return initials;
+    }
+
+    auth.modalConfirm = function() {
+        authReducer( {
+            type: AuthActionType.LOGOUT_USER,
+            payload: null
+        })
+    }
+
+    auth.isModal = () => {
+        console.log(auth.modalUp === true)
+        return auth.modalUp === true;
     }
 
     return (

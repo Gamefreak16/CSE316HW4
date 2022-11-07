@@ -13,6 +13,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import zIndex from '@mui/material/styles/zIndex';
 
 export default function AppBanner() {
     const { auth } = useContext(AuthContext);
@@ -104,7 +105,7 @@ export default function AppBanner() {
                         <Link style={{ textDecoration: 'none', color: 'white' }} to='/'>⌂</Link>
                     </Typography>
                     <Box sx={{ flexGrow: 1 }}>{editToolbar}</Box>
-                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{ display: { xs: 'none', md: 'flex' } , zIndex:1 }}>
                         <IconButton
                             size="large"
                             edge="end"

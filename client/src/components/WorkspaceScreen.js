@@ -52,7 +52,7 @@ function WorkspaceScreen() {
        
         <Box>
         <List 
-            id="playlist-cards" 
+            id="playlister-workspace" 
             sx={{ width: '100%', bgcolor: 'background.paper' }}
         >
             {
